@@ -1,0 +1,15 @@
+﻿section {
+    max-width: 70%;
+}
+.form-control {
+    max-width: 35%;
+}
+
+#section-one div{
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+#section-one label {
+    text-align: right;
+    
+}
