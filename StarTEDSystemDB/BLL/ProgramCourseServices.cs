@@ -44,7 +44,7 @@ namespace StarTEDSystemDB.BLL
         }
 
         /// <summary>
-        /// Get a single ProgramCourse by course ID
+        /// Get a single ProgramCourse by course ID including all its details from the Course Table
         /// </summary>
         /// <param name="id"></param>
         /// <returns>a single program associated with a given Id</returns>
@@ -56,18 +56,45 @@ namespace StarTEDSystemDB.BLL
                 .FirstOrDefault();
         }
 
+
+        //public void DeactivateProgramCourse(int id, bool isActive)
+        //{
+        //    ProgramCourse UpdatedProgramCourse = _context.ProgramCourses
+        //        .FirstOrDefault(pc => pc.ProgramCourseId == id);
+        //    UpdatedProgramCourse.Active = isActive;
+
+        //    _context.SaveChanges();
+        //}
+
         /// <summary>
-        /// Update the ProgramCourse Active status associated with a given Id
+        /// Updates information of a ProgramCourse associated with a given Id
         /// </summary>
         /// <param name="id"></param>
         /// <param name="isActive"></param>
-        public void UpdateProgramCourse(int id, bool isActive)
+        public void UpdateProgramCourse(ProgramCourse programCourse)
         {
-            ProgramCourse UpdatedProgramCourse = _context.ProgramCourses
-                .FirstOrDefault(pc => pc.ProgramCourseId == id);
-            UpdatedProgramCourse.Active = isActive;
-
+            if (programCourse == null)
+            {
+                throw new ArgumentNullException("Course cannot be null", new ArgumentNullException());
+            }
+            _context.ProgramCourses.Update(programCourse);
             _context.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// Deactivates a ProgramCourse associated with a given ID by updating its "Active" status to false
+        /// </summary>
+        /// <param name="programCourse"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void DeactivateProgramCourse(ProgramCourse programCourse)
+        {
+            if (programCourse == null)
+            {
+                throw new ArgumentNullException("Course cannot be null", new ArgumentNullException());
+            }
+            programCourse.Active = false;
+            UpdateProgramCourse(programCourse);
         }
     }
 }
