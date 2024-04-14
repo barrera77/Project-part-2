@@ -15,6 +15,19 @@ namespace StarTEDSystemDB.BLL
         }
 
         /// <summary>
+        /// Get all program courses
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<ProgramCourse> GetAllProgramCourses()
+        {
+            return _context.ProgramCourses                
+                .Include(pc => pc.Course)
+               .OrderBy(c => c.Course.CourseName)
+               .ToList();
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>

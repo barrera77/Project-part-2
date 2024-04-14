@@ -77,7 +77,7 @@
                         @foreach (var pc in ProgramCourses)
                         {
                             <tr>
-                                <td class="text-center"><a href="/crud/@pc.ProgramCourseId">Edit</a></td>
+                                <td class="text-center"><a href="/crud/@pc.ProgramCourseId">View/Edit</a></td>
                                 <td class="text-center">@pc.CourseId</td>
                                 <td>@pc.Course.CourseName</td>
                                 <td class="text-center">@(pc.Required ? "Yes" : "No")</td>
